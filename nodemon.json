@@ -1,0 +1,8 @@
+{
+  "env": {
+    "PORT":3000,
+    "MONGO_DB": "mongodb+srv://shogunross:truesoul1995@chatbotdatabase-y4vvz.gcp.mongodb.net/hydro-hub?retryWrites=true",
+    "MONGO_USER": "shogunross",
+    "MONGO_PASSWORD": "truesoul1995"
+  }
+}
