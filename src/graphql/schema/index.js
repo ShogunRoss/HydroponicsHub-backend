@@ -24,6 +24,7 @@ module.exports = buildSchema(`
     pH: Float!
     nutrient: Float!
     time: String!
+    interval: Int!
   }
 
   type AuthData {

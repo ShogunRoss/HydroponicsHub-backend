@@ -67,6 +67,7 @@ module.exports = {
 			const result = await device.save()
 			const lastestData = result._doc.history.slice(-1)[0]
 			let updatedData = transformData(lastestData)
+			updatedData.interval = device.interval
 			return updatedData
 		}
 		catch (err) {
