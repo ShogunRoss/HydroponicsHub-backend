@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.route('/')
 	.get(function (req, res) {
-		res.send(200, "Hydro Hub Server is ready.");
+		res.status(200).send("Hydro Hub Server is ready.");
 	});
 
 app.use(bodyParser.json());

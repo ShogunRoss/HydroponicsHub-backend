@@ -5,9 +5,11 @@ const { transfromDevice, transformData } = require('./merge');
 module.exports = {
 	devices: async (args, req) => {
 		try {
-			const devices = await Device.find({ owner: req.userId });
+			const devices = await Device.find({ owner: "5ce6bde30bd14f5210d4197c" });
 			return devices.map(device => {
-				return transfromDevice(device);
+				return {...transfromDevice(device), ...device.history.map(data =>{
+					return transformData(data)
+				})};
 			});
 		} catch (err) {
 			throw err;
@@ -27,6 +29,7 @@ module.exports = {
 			installationDate: new Date(),
 			interval: 1,
 			secretKey: args.deviceInput.secretKey,
+			name: args.deviceInput.name,
 			owner: "5ce6bde30bd14f5210d4197c",	// remember to replace with req.userId
 		})
 		let createdDevice;

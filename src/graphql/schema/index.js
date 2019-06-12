@@ -2,7 +2,8 @@ const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
   type Device {
-		_id: ID!
+    _id: ID!
+    name: String!
 		secretKey: String!
     installationDate: String!
     interval: Int!
@@ -34,7 +35,8 @@ module.exports = buildSchema(`
   }
 
   input DeviceInput {
-		secretKey: String!
+    secretKey: String!
+    name: String!
   }
 
   input UserInput {

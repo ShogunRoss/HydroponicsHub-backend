@@ -50,7 +50,8 @@ const transformData = sensor => {
 	return {
 		...sensor._doc,
 		_id: sensor.id,
-		time: dateToString(sensor._doc.time),
+    time: dateToString(sensor._doc.time),
+    // device: devices.bind(this, sensor.device)
 	}
 }
 
