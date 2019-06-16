@@ -11,7 +11,7 @@ const deviceSchema = new Schema({
 		type: Date,
 		required: true
 	},
-	interval: {
+	sensorInterval: {
 		type: Number,
 		required: true
 	},

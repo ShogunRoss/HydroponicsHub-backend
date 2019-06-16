@@ -1,14 +1,21 @@
-const { buildSchema } = require('graphql');
+const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
   type Device {
     _id: ID!
+    secretKey: String!
     name: String!
-		secretKey: String!
     installationDate: String!
-    interval: Int!
-    history: [Sensor]
+    location: String!
+    tdsWanted: Float!
+    phWanted: Float!
+    sensorInterval: Float!
+    floodInterval: Float!
+    ledInterval: Float!
+    floodDuration: Float!
+    ledDuration: Float!
     owner: User!
+    history: [Sensor]
   }
 
   type User {
@@ -16,6 +23,8 @@ module.exports = buildSchema(`
     email: String!
     password: String
     phone: String!
+    firstName: String!
+    lastName: String!
     ownedDevices: [Device!]
   }
 
@@ -25,7 +34,13 @@ module.exports = buildSchema(`
     pH: Float!
     nutrient: Float!
     time: String!
-    interval: Int!
+    tdsWanted: Float!
+    phWanted: Float!
+    sensorInterval: Float!
+    floodInterval: Float!
+    ledInterval: Float!
+    floodDuration: Float!
+    ledDuration: Float!
   }
 
   type AuthData {
@@ -37,12 +52,22 @@ module.exports = buildSchema(`
   input DeviceInput {
     secretKey: String!
     name: String!
+    location: String!
+    tdsWanted: Float!
+    phWanted: Float!
+    sensorInterval: Float!
+    floodInterval: Float!
+    ledInterval: Float!
+    floodDuration: Float!
+    ledDuration: Float!
   }
 
   input UserInput {
 		email: String!
 		phone: String!
     password: String!
+    firstName: String!
+    lastName: String!
 	}
 	
 	input SensorInput {
@@ -68,4 +93,4 @@ module.exports = buildSchema(`
     query: RootQuery
     mutation: RootMutation
   }
-`)
+`);

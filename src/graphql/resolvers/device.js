@@ -30,9 +30,17 @@ module.exports = {
     }
     const device = new Device({
       installationDate: new Date(),
-      interval: 1,
+      location: args.deviceInput.location,
       secretKey: args.deviceInput.secretKey,
       name: args.deviceInput.name,
+      tdsWanted: args.deviceInput.tdsWanted,
+      phWanted: args.deviceInput.phWanted,
+      sensorInterval: args.deviceInput.sensorInterval,
+      floodInterval: args.deviceInput.tdsWanted,
+      ledInterval: args.deviceInput.ledInterval,
+      floodDuration: args.deviceInput.floodDuration,
+      ledDuration: args.deviceInput.ledDuration,
+
       owner: "5ce6bde30bd14f5210d4197c" // remember to replace with req.userId
     });
     let createdDevice;
@@ -74,7 +82,7 @@ module.exports = {
       const result = await device.save();
       const lastestData = result._doc.history.slice(-1)[0];
       let updatedData = transformData(lastestData);
-      updatedData.interval = device.interval;
+      updatedData.sensorInterval = device.sensorInterval;
       return updatedData;
     } catch (err) {
       throw err;
