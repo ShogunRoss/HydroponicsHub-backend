@@ -9,6 +9,8 @@ const user = async userId => {
       ...user._doc,
       _id: user.id,
       password: null,
+      createdAt: dateToString(device._doc.createdAt),
+      updatedAt: dateToString(device._doc.updatedAt),
       ownedDevices: devices.bind(this, user._doc.ownedDevices)
     };
   } catch (err) {
@@ -18,15 +20,15 @@ const user = async userId => {
 
 const devices = async deviceIds => {
   try {
-    const devices = await Device.find({ _id: { $in: deviceIds } })
-    return devices.map(device => {          // return at this stage will return the transformed devices as defined in this file, not in the schema.
+    const devices = await Device.find({ _id: { $in: deviceIds } });
+    return devices.map(device => {
+      // return at this stage will return the transformed devices as defined in this file, not in the schema.
       return transfromDevice(device);
     });
-  }
-  catch (err) {
+  } catch (err) {
     throw err;
   }
-}
+};
 
 // const singleDevice = async deviceId => {
 //   try {
@@ -41,18 +43,18 @@ const transfromDevice = device => {
   return {
     ...device._doc,
     _id: device.id,
-    installationDate: dateToString(device._doc.installationDate),
-    owner: user.bind(this, device.owner),
+    createdAt: dateToString(device._doc.createdAt),
+    updatedAt: dateToString(device._doc.updatedAt),
+    owner: user.bind(this, device.owner)
   };
 };
 
 const transformData = sensor => {
-	return {
-		...sensor._doc,
-		_id: sensor.id,
-    time: dateToString(sensor._doc.time),
-	}
-}
+  return {
+    ...sensor._doc,
+    _id: sensor.id,
+    time: dateToString(sensor._doc.time)
+  };
+};
 
-module.exports = { transfromDevice, transformData }
-
+module.exports = { transfromDevice, transformData };

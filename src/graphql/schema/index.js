@@ -5,16 +5,18 @@ module.exports = buildSchema(`
     _id: ID!
     secretKey: String!
     name: String!
-    installationDate: String!
     location: String!
     tdsWanted: Float!
     phWanted: Float!
-    sensorInterval: Float!
     floodInterval: Float!
-    ledInterval: Float!
     floodDuration: Float!
-    ledDuration: Float!
+    startFloodTime: String!
+    endFloodTime: String!
+    startLedTime: String!
+    endLedTime: String!
     owner: User!
+    createdAt: String!
+    updatedAt: String!
     history: [Sensor]
   }
 
@@ -25,6 +27,8 @@ module.exports = buildSchema(`
     phone: String!
     firstName: String!
     lastName: String!
+    createdAt: String!
+    updatedAt: String!
     ownedDevices: [Device!]
   }
 
@@ -34,13 +38,6 @@ module.exports = buildSchema(`
     pH: Float!
     nutrient: Float!
     time: String!
-    tdsWanted: Float!
-    phWanted: Float!
-    sensorInterval: Float!
-    floodInterval: Float!
-    ledInterval: Float!
-    floodDuration: Float!
-    ledDuration: Float!
   }
 
   type AuthData {
@@ -55,11 +52,12 @@ module.exports = buildSchema(`
     location: String!
     tdsWanted: Float!
     phWanted: Float!
-    sensorInterval: Float!
     floodInterval: Float!
-    ledInterval: Float!
     floodDuration: Float!
-    ledDuration: Float!
+    startFloodTime: String!
+    endFloodTime: String!
+    startLedTime: String!
+    endLedTime: String!
   }
 
   input UserInput {
@@ -84,9 +82,10 @@ module.exports = buildSchema(`
 
   type RootMutation {
     registerDevice(deviceInput: DeviceInput): Device
-		createUser(userInput: UserInput): User
+    editDevice(deviceInput: DeviceInput): Device
+		createUser(userInput: UserInput): AuthData!
 		updateSensor(sensorInput: SensorInput): Sensor
-		removeDevice(deviceId: ID!): User!
+		removeDevice(secretKey: String!): User!
   }
 
   schema {

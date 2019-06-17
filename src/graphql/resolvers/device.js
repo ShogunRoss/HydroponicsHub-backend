@@ -5,7 +5,7 @@ const { transfromDevice, transformData } = require("./merge");
 module.exports = {
   devices: async (args, req) => {
     try {
-      const devices = await Device.find({ owner: "5ce6bde30bd14f5210d4197c" });
+      const devices = await Device.find({ owner: req.userId });
       return devices.map(device => {
         for (let i = 0; i < device.history.length; i++) {
           device.history[i] = transformData(device.history[i]);
@@ -18,9 +18,9 @@ module.exports = {
   },
 
   registerDevice: async (args, req) => {
-    // if (!req.isAuth) {
-    // 	throw new Error('Unauthenciated');
-    // }
+    if (!req.isAuth) {
+      throw new Error("Unauthenciated");
+    }
 
     const existDevice = await Device.findOne({
       secretKey: args.deviceInput.secretKey
@@ -29,25 +29,24 @@ module.exports = {
       throw new Error("Device have already been registered.");
     }
     const device = new Device({
-      installationDate: new Date(),
       location: args.deviceInput.location,
       secretKey: args.deviceInput.secretKey,
       name: args.deviceInput.name,
       tdsWanted: args.deviceInput.tdsWanted,
       phWanted: args.deviceInput.phWanted,
-      sensorInterval: args.deviceInput.sensorInterval,
-      floodInterval: args.deviceInput.tdsWanted,
-      ledInterval: args.deviceInput.ledInterval,
+      floodInterval: args.deviceInput.floodInterval,
       floodDuration: args.deviceInput.floodDuration,
-      ledDuration: args.deviceInput.ledDuration,
-
-      owner: "5ce6bde30bd14f5210d4197c" // remember to replace with req.userId
+      startFloodTime: args.deviceInput.startFloodTime,
+      endFloodTime: args.deviceInput.endFloodTime,
+      startLedTime: args.deviceInput.startLedTime,
+      endLedTime: args.deviceInput.endLedTime,
+      owner: req.userId // remember to replace with req.userId
     });
     let createdDevice;
     try {
       const result = await device.save();
       createdDevice = transfromDevice(result);
-      const user = await User.findById("5ce6bde30bd14f5210d4197c"); // remember to replace with req.userId
+      const user = await User.findById(req.userId); // remember to replace with req.userId
       if (!user) {
         throw new Error("User not found.");
       }
@@ -59,10 +58,41 @@ module.exports = {
     }
   },
 
+  editDevice: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenciated");
+    }
+    try {
+      const existDevice = await Device.findOneAndUpdate(
+        {
+          secretKey: args.deviceInput.secretKey
+        },
+        {
+          location: args.deviceInput.location,
+          name: args.deviceInput.name,
+          tdsWanted: args.deviceInput.tdsWanted,
+          phWanted: args.deviceInput.phWanted,
+          floodInterval: args.deviceInput.floodInterval,
+          floodDuration: args.deviceInput.floodDuration,
+          startFloodTime: args.deviceInput.startFloodTime,
+          endFloodTime: args.deviceInput.endFloodTime,
+          startLedTime: args.deviceInput.startLedTime,
+          endLedTime: args.deviceInput.endLedTime
+        },
+        { new: true }
+      );
+
+      let updatedDevice = transfromDevice(existDevice);
+      return updatedDevice;
+    } catch (err) {
+      throw err;
+    }
+  },
+
   updateSensor: async (args, req) => {
-    // if (!req.isAuth) {
-    // 	throw new Error('Unauthenciated');
-    // }
+    if (!req.isAuth) {
+      throw new Error("Unauthenciated");
+    }
 
     const data = {
       temperature: args.sensorInput.temperature,
@@ -90,17 +120,18 @@ module.exports = {
   },
 
   removeDevice: async (args, req) => {
-    // if (!req.isAuth) {
-    // 	throw new Error('Unauthenciated');
-    // }
+    if (!req.isAuth) {
+      throw new Error("Unauthenciated");
+    }
     try {
-      const device = await Device.findByIdAndDelete(args.deviceId).populate(
+      const device = await Device.findOneAndDelete(args.secretKey).populate(
         "owner"
       );
 
       await device.owner.ownedDevices.remove(args.deviceId);
-
+      const user = device.owner;
       const result = await user.save();
+
       return { ...result._doc, password: null, _id: result.id };
     } catch (err) {
       throw err;
