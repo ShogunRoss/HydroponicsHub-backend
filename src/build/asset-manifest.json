@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/ShogunRoss/HydroponicsHub-frontend/static/css/main.0667adbd.chunk.css",
-    "main.js": "/ShogunRoss/HydroponicsHub-frontend/static/js/main.71a09025.chunk.js",
-    "main.js.map": "/ShogunRoss/HydroponicsHub-frontend/static/js/main.71a09025.chunk.js.map",
-    "runtime~main.js": "/ShogunRoss/HydroponicsHub-frontend/static/js/runtime~main.0f118fbb.js",
-    "runtime~main.js.map": "/ShogunRoss/HydroponicsHub-frontend/static/js/runtime~main.0f118fbb.js.map",
-    "static/js/2.a78f903e.chunk.js": "/ShogunRoss/HydroponicsHub-frontend/static/js/2.a78f903e.chunk.js",
-    "static/js/2.a78f903e.chunk.js.map": "/ShogunRoss/HydroponicsHub-frontend/static/js/2.a78f903e.chunk.js.map",
-    "index.html": "/ShogunRoss/HydroponicsHub-frontend/index.html",
-    "precache-manifest.f8b7523f3d1d738517d62c4b68c70651.js": "/ShogunRoss/HydroponicsHub-frontend/precache-manifest.f8b7523f3d1d738517d62c4b68c70651.js",
-    "service-worker.js": "/ShogunRoss/HydroponicsHub-frontend/service-worker.js",
-    "static/css/main.0667adbd.chunk.css.map": "/ShogunRoss/HydroponicsHub-frontend/static/css/main.0667adbd.chunk.css.map",
-    "static/media/hydroponics-bg.jpg": "/ShogunRoss/HydroponicsHub-frontend/static/media/hydroponics-bg.c9b68445.jpg",
-    "static/media/sidebar.jpg": "/ShogunRoss/HydroponicsHub-frontend/static/media/sidebar.c7ff3e89.jpg"
+    "main.css": "/static/css/main.0667adbd.chunk.css",
+    "main.js": "/static/js/main.71a09025.chunk.js",
+    "main.js.map": "/static/js/main.71a09025.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.0f118fbb.js",
+    "runtime~main.js.map": "/static/js/runtime~main.0f118fbb.js.map",
+    "static/js/2.a78f903e.chunk.js": "/static/js/2.a78f903e.chunk.js",
+    "static/js/2.a78f903e.chunk.js.map": "/static/js/2.a78f903e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f8b7523f3d1d738517d62c4b68c70651.js": "/precache-manifest.f8b7523f3d1d738517d62c4b68c70651.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.0667adbd.chunk.css.map": "/static/css/main.0667adbd.chunk.css.map",
+    "static/media/hydroponics-bg.jpg": "/static/media/hydroponics-bg.c9b68445.jpg",
+    "static/media/sidebar.jpg": "/static/media/sidebar.c7ff3e89.jpg"
   }
 }
