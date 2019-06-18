@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0667adbd.chunk.css",
+    "main.js": "/static/js/main.266db639.chunk.js",
+    "main.js.map": "/static/js/main.266db639.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.0f118fbb.js",
+    "runtime~main.js.map": "/static/js/runtime~main.0f118fbb.js.map",
+    "static/js/2.336df87f.chunk.js": "/static/js/2.336df87f.chunk.js",
+    "static/js/2.336df87f.chunk.js.map": "/static/js/2.336df87f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1a78e63337adc4aab5b99622bc6e348b.js": "/precache-manifest.1a78e63337adc4aab5b99622bc6e348b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.0667adbd.chunk.css.map": "/static/css/main.0667adbd.chunk.css.map",
+    "static/media/hydroponics-bg.jpg": "/static/media/hydroponics-bg.c9b68445.jpg",
+    "static/media/sidebar.jpg": "/static/media/sidebar.c7ff3e89.jpg"
+  }
+}

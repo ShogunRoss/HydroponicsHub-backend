@@ -134,9 +134,9 @@ module.exports = {
       throw new Error("Unauthenciated");
     }
     try {
-      const device = await Device.findOneAndDelete(args.secretKey).populate(
-        "owner"
-      );
+      const device = await Device.findOneAndDelete({
+        secretKey: args.secretKey
+      }).populate("owner");
 
       await device.owner.ownedDevices.remove(args.deviceId);
       const user = device.owner;
