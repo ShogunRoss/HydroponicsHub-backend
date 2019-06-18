@@ -78,6 +78,7 @@ module.exports = buildSchema(`
   type RootQuery {
     devices: [Device!]!
     login(email: String!, password: String!): AuthData!
+    getConfig(secretKey: String!): Device!
   }
 
   type RootMutation {

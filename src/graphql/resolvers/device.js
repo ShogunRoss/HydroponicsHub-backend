@@ -17,6 +17,20 @@ module.exports = {
     }
   },
 
+  getConfig: async (args, req) => {
+    try {
+      const device = await Device.findOne({
+        secretKey: args.secretKey
+      });
+      if (!device) {
+        throw new Error("Device is not registered.");
+      }
+      return transfromDevice(device);
+    } catch (err) {
+      throw err;
+    }
+  },
+
   registerDevice: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenciated");
