@@ -104,10 +104,6 @@ module.exports = {
   },
 
   updateSensor: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthenciated");
-    }
-
     const data = {
       temperature: args.sensorInput.temperature,
       pH: args.sensorInput.pH,
