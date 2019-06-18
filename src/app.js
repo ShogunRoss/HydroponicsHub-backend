@@ -13,7 +13,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "frontend")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,14 +24,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/*", function(req, res) {
-  res.sendFile(path.join(__dirname, "frontend", "index.html"));
-});
-
-// app.route('/')
-// 	.get(function (req, res) {
-// 		res.status(200).send("Hydro Hub Server is ready.");
-// 	});
+app.route('/')
+	.get(function (req, res) {
+		res.status(200).send("Hydro Hub Server is ready.");
+	});
 
 app.use(bodyParser.json());
 
@@ -48,7 +43,10 @@ app.use(
 );
 
 mongoose
-  .connect(process.env.MONGO_DB, { useNewUrlParser: true })
+  .connect(
+    process.env.MONGO_DB,
+    { useNewUrlParser: true }
+  )
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Connected to Database. Server is running on port ${PORT}`);
